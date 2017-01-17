@@ -1,5 +1,15 @@
 *.VC.db
 
+#Ignore Starter Content except for Textures used in project
+Content/StarterContent/*
+#Don't ignore Textures folder
+!Content/StarterContent/Textures
+# Ignore everything in Textures
+Content/StarterContent/Textures/*
+#Except those two
+!Content/StarterContent/Textures/T_Ground_Grass_D.uasset
+!Content/StarterContent/Textures/T_Ground_Gravel_D.uasset
+
 # Visual Studio 2015 user specific files
 .vs/
 
