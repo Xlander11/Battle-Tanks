@@ -27,8 +27,6 @@ void ATankAIController::BeginPlay() {
 void ATankAIController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	
-	AimTowardCrosshair();
 }
 
 ATank *ATankAIController::GetControlledTank() const {
@@ -41,11 +39,4 @@ ATank * ATankAIController::GetPlayerTank() const
 
 	if (!PlayerPawn) { return nullptr; }
 	return Cast<ATank>(PlayerPawn);
-}
-
-void ATankAIController::AimTowardCrosshair()
-{
-	if (!GetControlledTank()) { return; }
-
-	// if it hits landscape then move barrel to location
 }
