@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BattleTanks.h"
-#include "TankAIController.h"
 #include "../Public/TankAIController.h"
 
 
@@ -25,6 +24,13 @@ void ATankAIController::BeginPlay() {
 	}
 }
 
+void ATankAIController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	AimTowardCrosshair();
+}
+
 ATank *ATankAIController::GetControlledTank() const {
 	return Cast<ATank>(GetPawn());
 }
@@ -35,4 +41,11 @@ ATank * ATankAIController::GetPlayerTank() const
 
 	if (!PlayerPawn) { return nullptr; }
 	return Cast<ATank>(PlayerPawn);
+}
+
+void ATankAIController::AimTowardCrosshair()
+{
+	if (!GetControlledTank()) { return; }
+
+	// if it hits landscape then move barrel to location
 }
