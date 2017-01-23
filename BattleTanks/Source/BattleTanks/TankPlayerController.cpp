@@ -58,7 +58,8 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector &HitLocation) const {
 		//UE_LOG(LogTemp, Warning, TEXT("WorldDirection : %s"), *WorldDirection.ToString());
 		// line trace along that look direction, and see what's get hitten
 		if (GetLookVectorHitLocation(WorldDirection, HitLocation)) {
-			UE_LOG(LogTemp, Warning, TEXT("Hitted : %s"), *HitLocation.ToString());
+			GetControlledTank()->AimAt(HitLocation);
+			//UE_LOG(LogTemp, Warning, TEXT("Hitted : %s"), *HitLocation.ToString());
 		}
 	}
 	return true;
