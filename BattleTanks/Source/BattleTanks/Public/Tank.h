@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "TankAiminComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
@@ -12,6 +13,12 @@ class BATTLETANKS_API ATank : public APawn
 
 public:
 	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetBarrelReference(UStaticMeshComponent *BarrelToSet);
+
+protected:
+	UTankAiminComponent *TankAimingComponent = nullptr;
 
 private:
 	// Sets default values for this pawn's properties
@@ -24,5 +31,5 @@ private:
 	virtual void Tick( float DeltaSeconds ) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 };

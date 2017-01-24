@@ -22,6 +22,8 @@ Content/StarterContent/Textures/*
 # Precompiled Headers
 *.gch
 *.pch
+*.ipch
+ipch/*
 
 # Compiled Dynamic libraries
 *.so
