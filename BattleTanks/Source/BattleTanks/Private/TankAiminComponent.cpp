@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BattleTanks.h"
+#include "../Public/TankBarrel.h"
 #include "../Public/TankAiminComponent.h"
 
 
@@ -46,10 +47,12 @@ void UTankAiminComponent::MoveBarrelTowards(FVector AimDirection)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 	UE_LOG(LogTemp, Warning, TEXT("DeltaRotator: %s"), *DeltaRotator.ToString());
+
+	Barrel->Elevate(5);
 }
 
 
-void UTankAiminComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+void UTankAiminComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
