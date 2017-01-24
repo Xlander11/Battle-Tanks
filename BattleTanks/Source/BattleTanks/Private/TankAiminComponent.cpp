@@ -15,24 +15,6 @@ UTankAiminComponent::UTankAiminComponent()
 	// ...
 }
 
-// Called when the game starts
-void UTankAiminComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
-
-// Called every frame
-void UTankAiminComponent::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
-{
-	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
-
-	// ...
-}
-
 void UTankAiminComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
 	if (!Barrel) { return;
@@ -49,14 +31,21 @@ void UTankAiminComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		StartLocation,
 		HitLocation,
 		LaunchSpeed,
-		false,
-		0,
-		0,
 		ESuggestProjVelocityTraceOption::DoNotTrace)
 	) {
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		UE_LOG(LogTemp, Warning, TEXT("%s is aiming at %s"), *OurTankName, *AimDirection.ToString());
+		// UE_LOG(LogTemp, Warning, TEXT("%s is aiming at %s"), *OurTankName, *AimDirection.ToString());
+		MoveBarrelTowards(AimDirection);
 	}
+}
+
+void UTankAiminComponent::MoveBarrelTowards(FVector AimDirection)
+{
+	// Get difference between barrel rotation and AimDirection
+	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
+	auto AimAsRotator = AimDirection.Rotation();
+	auto DeltaRotator = AimAsRotator - BarrelRotator;
+	UE_LOG(LogTemp, Warning, TEXT("DeltaRotator: %s"), *DeltaRotator.ToString());
 }
 
 
